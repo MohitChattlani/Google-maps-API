@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Google maps API</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0">
+	<style type="text/css">
+		#map
+		{
+			height: 100%;
+		}
+		html,body
+		{
+			height: 100%;
+			padding: 0;
+			margin: 0;
+		}
+	</style>
+</head>
+<body>
+<div id="map"></div>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWLR7fEOTMrXWCtyk1nZHUyCF5lGn36gI&callback=initMap">
+    </script>
+    <script type="text/javascript">
+    	var map;
+    	var cord= {lat: -34.397, lng: 150.644};
+    	function initMap()
+    	{
+    		map=new google.maps.Map(document.getElementById('map'),{
+    			center: cord,
+    			zoom:8
+    		});
+    	var marker= new google.maps.Marker({
+    		map:map ,
+    		position: cord,
+    		draggable: true,
+    		title: 'info'
+    	});
+    	var contentstr='Hello this is Australia'+'<a href="https://en.wikipedia.org/wiki/Australia">Hello</a> ';
+    	var infowindow= new google.maps.InfoWindow({
+    		content:contentstr ,
+    		maxWidth: 100
+    	});
+    	marker.addListener('click', function(event){
+    		infowindow.open(map,marker);
+    	});
+        /*
+        to close info window
+        infowindow.close();
+        */
+
+    }
+    </script>
+</body>
+</html>
